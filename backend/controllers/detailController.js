@@ -50,3 +50,29 @@ exports.searchDetails = async (req, res) => {
   }
 };
 
+exports.suggestDetail = async (req, res) => {
+  try {
+    const { host_element, adjacent_element, exposure } = req.body;
+
+    const result = await pool.query(
+      "SELECT * FROM public.suggest_detail_function($1, $2, $3);",
+      [host_element, adjacent_element, exposure]
+    );
+
+    res.status(200).json({
+      statuscode: 200,
+      status: "success",
+      data: result.rows,
+      error: [{ message: "", errorcode: "" }],
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      statuscode: 500,
+      status: "Failed",
+      data: {},
+      error: [{ message: err.message, errorcode: 500 }],
+    });
+  }
+};
+
