@@ -26,11 +26,11 @@ exports.getDetails = async (req, res) => {
 
 exports.searchDetails = async (req, res) => {
   try {
-    const { search_text } = req.body;
+    const { q } = req.query;
 
     const result = await pool.query(
       "SELECT * FROM public.search_details_function($1);",
-      [search_text]
+      [q]
     );
 
     res.status(200).json({
@@ -49,3 +49,4 @@ exports.searchDetails = async (req, res) => {
     });
   }
 };
+

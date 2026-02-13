@@ -5,7 +5,7 @@ const { getDetails, searchDetails } = require("../controllers/detailController")
 const { validateSearchDetails } = require("../middleware/detailMiddleware");
 
 router.get("/details", getDetails);
-router.post("/search-details", validateSearchDetails, searchDetails);
+router.get("/search", validateSearchDetails, searchDetails);
 
 
 module.exports = router;
