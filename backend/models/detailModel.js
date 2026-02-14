@@ -1,8 +1,9 @@
 const joi = require("@hapi/joi");
 
 const searchDetailsModel = joi.object({
-  q: joi.string().allow("", null),
+  q: joi.string().allow("", null).optional(),
 });
+
 const suggestDetailModel = joi.object({
   host_element: joi.string().required(),
   adjacent_element: joi.string().required(),

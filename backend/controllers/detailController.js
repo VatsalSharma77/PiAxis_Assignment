@@ -28,9 +28,11 @@ exports.searchDetails = async (req, res) => {
   try {
     const { q } = req.query;
 
+    const searchTerm = q || "";
+
     const result = await pool.query(
       "SELECT * FROM public.search_details_function($1);",
-      [q]
+      [searchTerm]
     );
 
     res.status(200).json({
@@ -59,10 +61,22 @@ exports.suggestDetail = async (req, res) => {
       [host_element, adjacent_element, exposure]
     );
 
+     if (result.rows.length === 0) {
+      return res.status(200).json({
+        statuscode: 200,
+        status: "success",
+        data: {
+          message: "No matching detail found for the provided context",
+          suggestion: null
+        },
+        error: [],
+      });
+    }
+
     res.status(200).json({
       statuscode: 200,
       status: "success",
-      data: result.rows,
+      data: result.rows[0],
       error: [{ message: "", errorcode: "" }],
     });
 
