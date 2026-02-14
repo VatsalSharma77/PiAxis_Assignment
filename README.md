@@ -1,124 +1,156 @@
 # PiAxis_Assignment
-Detail Management System - Frontend
-A modern, responsive React application for managing and searching architectural construction details with suggestions.
 
-🚀 Tech Stack
-React 18 with Vite - Fast development and optimized builds
+# Detail Management System - Frontend
 
-Material-UI (MUI) - Modern component library with custom theming
+A modern React application for managing and searching architectural construction details with suggestions.
 
-Axios - HTTP client for API communication
+---
 
-JavaScript (ES6+) - Modern JavaScript features
+## 🚀 Tech Stack
 
-📦 Installation
-Prerequisites
-Node.js (v16 or higher)
+* **React 18** with **Vite** – Fast development and optimized builds
+* **Material-UI (MUI)** – Modern UI component library
+* **Axios** – HTTP client for API communication
+* **JavaScript (ES6+)**
 
-npm or yarn
+---
 
-Setup Steps
-Clone the repository
+## 📦 Installation & Setup
 
-bash
-git clone <repository-url>
+### 🔹 Prerequisites
+
+* Node.js (v16 or higher)
+* npm or yarn
+
+---
+
+### 🔹 Steps to Run the Project
+
+1️⃣ **Clone the repository**
+
+```bash
+git clone (https://github.com/VatsalSharma77/PiAxis_Assignment.git)
 cd frontend
-Install dependencies
+```
 
-bash
+2️⃣ **Install dependencies**
+
+```bash
 npm install
-Configure environment variables
+```
 
-Create a .env file in the root directory:
+3️⃣ **Create environment file**
 
-text
+Create a `.env` file in the root folder and add:
+
+```env
 VITE_BACKEND_URL=http://localhost:5000/api
-Start development server
+```
 
-bash
+4️⃣ **Start the development server**
+
+```bash
 npm run dev
-The application will run on http://localhost:5173 (default Vite port)
+```
 
-📁 Project Structure
-text
+Application will run on:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 📁 Project Structure
+
+```
 src/
 ├── api/
-│   └── api.js                 # API functions (getDetails, searchDetails, suggestDetails)
+│   └── api.js                 # API functions
 ├── services/
-│   └── axiosInstance.js       # Configured Axios instance with base URL
-├── App.jsx                    # Main application component
-└── main.jsx                   # Application entry point
-Key Files
-services/axiosInstance.js
-Centralized Axios configuration
+│   └── axiosInstance.js       # Axios configuration
+├── App.jsx                    # Main component
+└── main.jsx                   # Entry point
+```
 
-Automatically injects VITE_BACKEND_URL from environment variables
+---
 
-Provides consistent base URL for all API calls
+## 🔧 Core Functionality
 
-api/api.js
-Contains three core API functions:
+### 1️⃣ View All Details
 
-getDetails() - Fetches all architectural details from the database
+* Automatically fetches all details on page load
+* Displays title, description, category, and tags
+* Loading & error handling included
 
-searchDetails(q) - Searches details by title, tags, or description
+---
 
-suggestDetails(host_element, adjacent_element, exposure) - Gets AI-powered detail recommendations
+### 2️⃣ Search Details
 
-App.jsx
-Main application component with three key sections:
+* Search by:
 
-Search Section - Real-time search with results display
+  * Title
+  * Tags
+  * Description
+* Real-time search
+* Clear button to reset results
+* Empty state handling
 
-Suggestion Form - Dropdown selectors for detail parameters
+---
 
-Results Display - Dynamic rendering of search results and AI suggestions
+### 3️⃣ Detail Suggestion
 
-🎨 Features
-1. View All Details
-Displays all architectural details on initial load
+User selects:
 
-Shows title, description, category, and tags
+* **Host Element**
+* **Adjacent Element**
+* **Exposure**
 
-Smooth animations and hover effects
+Then system:
 
-2. Search Functionality
-Real-time search across title, tags, and description
+* Sends request to backend
+* Returns matched detail
+* Displays Suggestions
 
-Clear button to reset search
+---
 
-Loading states and error handling
+## 🔄 Application Flow
 
-Empty state feedback when no results found
+### Initial Load
 
-3. AI-Powered Suggestions
-Three dropdown selectors:
+```
+useEffect → getDetails() → setDetails() → Render
+```
 
-Host Element (External Wall, Internal Wall, Window)
+### Search Flow
 
-Adjacent Element (Slab, Floor, External Wall)
+```
+User Input → searchDetails(q) → Update State → Display Results
+```
 
-Exposure (External, Internal)
+### Suggestion Flow
 
-Clear buttons for each dropdown
+```
+Select Fields → suggestDetails() → Display Matched Detail + Explanation
+```
 
-Validation for required fields
+---
 
-🔄 How It Works
-Application Flow
-Initial Load
+## 📡 API Integration
 
-useEffect hook calls getDetails() API
+All API calls use a centralized Axios instance:
 
-Fetches all details from backend
+```javascript
+axiosInstance.get("/details")
+axiosInstance.get("/details/search", { params: { q } })
+axiosInstance.post("/details/suggest", formData)
+```
 
-Displays results in search section
+Base URL is automatically picked from:
 
-Search Flow
+```
+VITE_BACKEND_URL
+```
 
-text
-User Input → handleSearch() → searchDetails(q) API → Update State → Re-render Results
-Suggestion Flow
+---
 
-text
-Select Dropdowns → handleSuggest() → suggestDetails() API → Display Matched Detail + Explanation
