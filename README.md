@@ -407,20 +407,13 @@ JSON Response
 Assignment 1 has been successfully completed.
 
 It includes:
-
-Full Frontend implementation (React + Vite + MUI)
-
-Backend REST APIs (Node.js + Express)
-
-PostgreSQL database setup
-
-Search functionality
-
-Rule-based detail suggestion
-
-Proper validation and structured response format
+-Full Frontend implementation (React + Vite + MUI)
+-Backend REST APIs (Node.js + Express)
+-PostgreSQL database setup
+-Search functionality
+-Rule-based detail suggestion
+-Proper validation and structured response format
 
 ⏳ Assignment 2 (Optional)
-
-Assignment 2 was optional and has not been implemented in this submission.
+-Assignment 2 was optional and has not been implemented in this submission.
 
