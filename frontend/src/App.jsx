@@ -800,6 +800,7 @@ function App() {
                       border: "1px solid rgba(148, 163, 184, 0.1)",
                     }}
                   >
+                    
                     {suggestLoading ? (
                       <Box sx={{ display: "flex", justifyContent: "center", py: 6 }}>
                         <CircularProgress sx={{ color: "#a78bfa" }} />
